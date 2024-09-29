@@ -21,3 +21,27 @@ A potential approach might be to use two different environments on two different
 You might consider running your processes twice (once per environment) or keeping them in sync by ingesting data from the primary environment to the secondary one as frequently as needed to maintain consistency.
 
 
+# Sync a Lakehouse
+
+a Lakehouse provides 2 main sections:
+1. Files
+   a. it contains unstructured, semi-structored, well-structured data
+3. Tables
+   a. it only contains Delta tables
+
+**Files** can be easilly synced by copying all the new folder/files from the primary environment to the secondary one.
+You can recognize new or modified files and folders by the last modify date provided by onelake
+
+**Tables**, it's a different story and there are considerations you might want to go through related to the Delta format:
+1. The timing of data insertions, deletions, or updates affects the Delta history.   
+3. If business processes leverage Delta time travel to manage 'slow-changing dimensions', queries on the secondary environment will return different results.
+4. If synchronization between environments occurs while business processes are running, data dependency across tables is not guaranteed.
+
+**Potential approaches**
+
+1. If Delta Time travel is your way to go to manage "Slow changing dimension" and query results must be "consistents as much as possible" across environments (Primary and Secondary) you should run the Business processes twice, once per environemnt at the same time.
+2. If Delta time travel is not a concern you can sync the Tables just using a pipeline with a "copy data" and overwrite the tables with the latest available and consistent version of the data.
+
+
+
+
