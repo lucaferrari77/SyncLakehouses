@@ -31,7 +31,7 @@ a Lakehouse provides 2 main sections:
 
 **Files** can be easilly synced by copying all the new folder/files from the primary environment to the secondary one.
 You can recognize new or modified files and folders by the last modify date provided by onelake.
-[Example](Notebooks/SyncLakehouse_Files.ipynb)
+[Here is an example on how sync Files/Folders](Notebooks/SyncLakehouse_Files.ipynb)
 
 **Tables**, it's a different story and there are considerations you might want to go through related to the Delta format:
 1. The timing of data insertions, deletions, or updates affects the Delta history.   
@@ -44,7 +44,7 @@ You can recognize new or modified files and folders by the last modify date prov
 2. If Delta time travel is not a concern you can sync the Tables just using a pipeline with a "copy data" and overwrite the tables with the latest available and consistent version of the data.
    [Configure Lakehouse in a copy activity](https://learn.microsoft.com/en-us/fabric/data-factory/connector-lakehouse-copy-activity)
 3. If Delta time travel is not a concern you can also direct copy the folder which contains the delta table and then delete all the files created after the desired watermark.
-   [Example](Notebooks/SyncLakehouse_Tables.ipynb)
+   [Here is an example on how sync tables](Notebooks/SyncLakehouse_Tables.ipynb)
 
 Both examples can be improved, you can parallelize the executions to copy multiple folders and tables at the same time using, for example, Fabric pipelines.
 
