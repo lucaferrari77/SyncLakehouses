@@ -23,7 +23,7 @@ You might consider running your processes twice (once per environment) or keepin
 
 # Sync a Lakehouse
 
-a Lakehouse provides 2 main sections:
+A Lakehouse provides 2 main sections:
 1. Files
    a. it contains unstructured, semi-structored, well-structured data
 3. Tables
